@@ -1,0 +1,15 @@
+[submodule "third_party/ne16"]
+	path = third_party/ne16
+	url = https://github.com/pulp-platform/ne16
+[submodule "third_party/hwpe-stream"]
+	path = third_party/hwpe-stream
+	url = https://github.com/pulp-platform/hwpe-stream
+[submodule "third_party/hwpe-ctrl"]
+	path = third_party/hwpe-ctrl
+	url = https://github.com/pulp-platform/hwpe-ctrl
+[submodule "third_party/hci"]
+	path = third_party/hci
+	url = https://github.com/pulp-platform/hci
+[submodule "third_party/tech_cells_generic"]
+	path = third_party/tech_cells_generic
+	url = https://github.com/pulp-platform/tech_cells_generic

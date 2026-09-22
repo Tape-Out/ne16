@@ -1,0 +1,243 @@
+name: ne16
+version: 0.1.0
+spec: '0.1'
+kind: ip
+lang: sv
+identity:
+  slug: ne16-tapeout-foreign
+  display_name: NE16
+  summary: PULP's 16-channel neural engine, taken as a black box.
+  category: accelerator
+  subcategories:
+  - npu
+  ip_family: ne16
+  integration_profile: []
+  maturity: planned
+contract:
+  version: 1
+  ctrl:
+    shape: none
+    aw: 32
+    dw: 32
+params:
+  bw:
+    type: choice
+    values:
+    - 288
+    - 576
+    default: 288
+  cnt:
+    type: choice
+    values:
+    - 8
+    - 16
+    - 32
+    default: 16
+  id:
+    type: choice
+    values:
+    - 8
+    - 16
+    - 32
+    default: 16
+  mp:
+    type: choice
+    values:
+    - 4
+    - 9
+    default: 9
+  nContext:
+    type: choice
+    values:
+    - 1
+    - 2
+    - 4
+    default: 1
+  nCores:
+    type: choice
+    values:
+    - 4
+    - 8
+    - 9
+    - 16
+    default: 9
+  tpIn:
+    type: choice
+    values:
+    - 8
+    - 16
+    - 32
+    default: 16
+  tpOut:
+    type: choice
+    values:
+    - 16
+    - 32
+    - 64
+    default: 32
+emit:
+- kind: foreign
+  lang: sv
+  top: ne16_top_wrap
+  rtl:
+  - third_party/tech_cells_generic/src/deprecated/cluster_clk_cells.sv
+  - third_party/tech_cells_generic/src/deprecated/cluster_pwr_cells.sv
+  - third_party/tech_cells_generic/src/deprecated/generic_memory.sv
+  - third_party/tech_cells_generic/src/deprecated/generic_rom.sv
+  - third_party/tech_cells_generic/src/deprecated/pad_functional.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_buffer.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_clk_cells.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_pwr_cells.sv
+  - third_party/tech_cells_generic/src/rtl/tc_clk.sv
+  - third_party/tech_cells_generic/src/rtl/tc_sram.sv
+  - third_party/tech_cells_generic/src/tc_pwr.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_clock_gating_async.sv
+  - third_party/tech_cells_generic/src/deprecated/cluster_pwr_cells.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_pwr_cells.sv
+  - third_party/tech_cells_generic/src/deprecated/pulp_buffer.sv
+  - third_party/tech_cells_generic/src/tc_pwr.sv
+  - third_party/hwpe-stream/rtl/hwpe_stream_package.sv
+  - third_party/hwpe-stream/rtl/hwpe_stream_interfaces.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_assign.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_mux_static.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_demux_static.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_buffer.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_merge.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_fence.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_split.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_serialize.sv
+  - third_party/hwpe-stream/rtl/basic/hwpe_stream_deserialize.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_earlystall_sidech.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_earlystall.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_scm.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_scm_test_wrap.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_sidech.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv
+  - third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_ctrl.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_addressgen.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_addressgen_v2.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_addressgen_v3.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_strbgen.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_sink.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_sink_realign.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_source.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_source_realign.sv
+  - third_party/hwpe-stream/rtl/streamer/hwpe_stream_streamer_queue.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_fifo_load.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_fifo_load_sidech.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_fifo_store.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_fifo.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_assign.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_mux.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_mux_static.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_reorder.sv
+  - third_party/hwpe-stream/rtl/tcdm/hwpe_stream_tcdm_reorder_static.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_package.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile_latch.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile_latch_test_wrap.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv
+  - third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv
+  - third_party/hci/rtl/common/hci_package.sv
+  - third_party/hci/rtl/common/hci_interfaces.sv
+  - third_party/hci/rtl/interco/hci_log_interconnect.sv
+  - third_party/hci/rtl/interco/hci_log_interconnect_l2.sv
+  - third_party/hci/rtl/interco/hci_new_log_interconnect.sv
+  - third_party/hci/rtl/hci_interconnect.sv
+  - third_party/hci/rtl/interco/hci_hwpe_interconnect.sv
+  - third_party/hci/rtl/interco/hci_shallow_interconnect.sv
+  - third_party/hci/rtl/core/hci_core_fifo.sv
+  - third_party/hci/rtl/core/hci_core_assign.sv
+  - third_party/hci/rtl/core/hci_core_memmap_filter.sv
+  - third_party/hci/rtl/core/hci_core_memmap_demux_interl.sv
+  - third_party/hci/rtl/core/hci_core_sink.sv
+  - third_party/hci/rtl/core/hci_core_source.sv
+  - third_party/hci/rtl/core/hci_core_mux_static.sv
+  - third_party/hci/rtl/core/hci_core_mux_dynamic.sv
+  - third_party/hci/rtl/core/hci_core_load_store_mixer.sv
+  - third_party/hci/rtl/core/hci_core_r_valid_filter.sv
+  - third_party/hci/rtl/core/hci_core_cmd_queue.sv
+  - third_party/hci/rtl/core/hci_core_split.sv
+  - third_party/hci/rtl/mem/hci_mem_assign.sv
+  - third_party/ne16/rtl/ne16_package.sv
+  - third_party/ne16/rtl/accumulator/ne16_accumulator_scm_test_wrap.sv
+  - third_party/ne16/rtl/input_buffer/ne16_input_buffer_scm_test_wrap.sv
+  - third_party/ne16/rtl/accumulator/ne16_accumulator_scm.sv
+  - third_party/ne16/rtl/accumulator/ne16_accumulator_normquant.sv
+  - third_party/ne16/rtl/accumulator/ne16_normquant.sv
+  - third_party/ne16/rtl/accumulator/ne16_normquant_shifter.sv
+  - third_party/ne16/rtl/accumulator/ne16_normquant_bias.sv
+  - third_party/ne16/rtl/accumulator/ne16_normquant_multiplier.sv
+  - third_party/ne16/rtl/input_buffer/ne16_input_buffer_scm.sv
+  - third_party/ne16/rtl/input_buffer/ne16_input_buffer.sv
+  - third_party/ne16/rtl/array/ne16_scale.sv
+  - third_party/ne16/rtl/array/ne16_binconv_block.sv
+  - third_party/ne16/rtl/array/ne16_binconv_column.sv
+  - third_party/ne16/rtl/array/ne16_binconv_array.sv
+  - third_party/ne16/rtl/ctrl/ne16_ctrl_fsm.sv
+  - third_party/ne16/rtl/ctrl/ne16_ctrl.sv
+  - third_party/ne16/rtl/ne16_engine.sv
+  - third_party/ne16/rtl/ne16_streamer.sv
+  - third_party/ne16/rtl/ne16_top.sv
+  - third_party/ne16/rtl/ne16_top_wrap.sv
+  includes:
+  - third_party/hwpe-stream/rtl
+  - third_party/hwpe-ctrl/rtl
+  - third_party/ne16
+  params:
+    BW: bw
+    CNT: cnt
+    ID: id
+    MP: mp
+    N_CONTEXT: nContext
+    N_CORES: nCores
+    TP_IN: tpIn
+    TP_OUT: tpOut
+  clock:
+    port: clk_i
+  reset:
+    port: rst_ni
+    active: low
+    sync: true
+  ports:
+  - endpoint: periph
+    kind: transaction
+    role: target
+    profile: hwpe-periph
+    prefix: periph_
+  - endpoint: tcdm
+    kind: transaction
+    role: manager
+    profile: hci-tcdm
+    prefix: tcdm_
+  - endpoint: evt
+    kind: event
+    role: source
+    map:
+      evt: evt_o
+  - endpoint: pins
+    kind: physical
+    type: Ne16Pins
+    map:
+      busy: busy_o
+      testMode: test_mode_i
+  limits:
+  - 控制口是 HWPE 的外设协议、存储口是 HCI 的 TCDM，两者都不是 AXI；要挂总线得在外面加桥
+  - 依赖四个兄弟仓，版本按 ne16 的 Bender.yml 钉死：hwpe-stream 1.6.4、hwpe-ctrl 1.6.2、hci 1.0.6；取新的会对不上端口
+  - 工艺单元只取通用那一支：src/fpga 里的 Xilinx 原语（BUFGCE）不进这条路
+  - 上游不带可跑的测试台，这一版只有逐点展开与声明回执
+test:
+  noarea:
+  - bw
+  - cnt
+  - id
+  - mp
+  - nContext
+  - nCores
+  - tpIn
+  - tpOut
+targets:
+  foreign:
+    driver: foreign
