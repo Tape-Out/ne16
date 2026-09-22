@@ -12,3 +12,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    with:
+      # 这三个的版本由 NE16 自己的 Bender.yml 咬合：hwpe-stream 1.6.4 配
+      # hci 1.0.6 配 hwpe-ctrl 1.6.2。跟到最新会少掉 hci 还在驱动的
+      # test_mode_i，35 条展开错。钉死是设计，别让巡检每半月报一次红
+      hold: third_party/hwpe-stream third_party/hwpe-ctrl third_party/hci
